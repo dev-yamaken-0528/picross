@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width,initial-scale=1'>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/play.css'>
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p><a href="/">HOME</a></p>
+    <div id="app">
+      <table border="1" align="center">
+        <tr>
+          <td></td>
+          <td v-for="n in items.length">
+            <p v-for="num in headNum(n-1)">({{ num }})</p>
+          </td>
+        </tr>
+        <tr v-for="(row, rowindex) in items">
+          <td>
+            <span v-for="num in sideNum(rowindex)">({{ num }})</span>
+          </td>
+          <td v-for="(cell, cellindex) in row" v-on:click="selectCell" v-bind:id="rowindex+'_'+cellindex"></td>
+        </tr>
+      </table>
+      <p>選択中 : {{ modeLabel }}</p>
+      <button v-on:click="modeChange(0)" class="btn" v-bind:class="{btn_clicked: isShave}">■</button>
+      <button v-on:click="modeChange(1)" class="btn" v-bind:class="{btn_clicked: isCheck}">×</button>
+    </div>
+  </body>
+  <script src="/javascripts/vue.min.js"></script>
+  <script src="/javascripts/play.js"></script>
+</html>

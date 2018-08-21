@@ -1,0 +1,34 @@
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  cursor: pointer;
+}
+td {
+  width: 20px;
+  height: 20px;
+  vertical-align: bottom;
+}
+
+#app {
+  text-align: center;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.3em 1em;
+  text-decoration: none;
+  color: #67c5ff;
+  border: solid 2px #67c5ff;
+  border-radius: 3px;
+  transition: .4s;
+  font-size: 32px;
+}
+.btn:hover {
+  background: #67c5ff;
+  color: white;
+}
+
+.btn_clicked {
+  background: #67c5ff;
+  color: white;
+}
