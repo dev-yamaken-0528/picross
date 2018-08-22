@@ -1,14 +1,26 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width,initial-scale=1'>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/edit.css' />
   </head>
   <body>
     <div id="app">
       <h1><%= title %>[<%= id %>]</h1>
-      <h2>まだ動かない</h2>
+      <h2>まだうごかない</h2>
       <p><a href="/">HOME</a></p>
+      <hr>
+      <input type="hidden" id="h_data" value="<%= data %>">
+      <table border="1" align="center">
+        <tr v-for="row in <%= size %>">
+          <td v-for="col in <%= size %>" v-bind:id="(Number(row)-1)+'_'+(Number(col)-1)" v-bind:class="{yai:isis}">{{row-1}}:{{col-1}}</td>
+        </tr>
+      </table>
     </div>
   </body>
+  <script src="/javascripts/vue.min.js"></script>
+  <script src="/javascripts/edit.js"></script>
 </html>
