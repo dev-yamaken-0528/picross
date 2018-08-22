@@ -1,5 +1,3 @@
-//var start_ms = new Date().getTime();
-
 var app = new Vue({
   el: '#app',
   data: {

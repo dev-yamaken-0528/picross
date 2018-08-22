@@ -7,7 +7,6 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var play = require('./routes/play');
-var manager = require('./routes/manager');
 var create = require('./routes/create');
 var edit = require('./routes/edit');
 
@@ -27,7 +26,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/play', play);
-app.use('/manager', manager);
 app.use('/create', create);
 app.use('/edit', edit);
 

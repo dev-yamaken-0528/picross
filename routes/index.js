@@ -1,9 +1,25 @@
 var express = require('express');
 var router = express.Router();
+var fs = require('fs');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'INDEX!' });
+  var readdata = fs.readdirSync('./data/')
+  var data = []
+  readdata.forEach(function(filename){
+    data.push(filename.replace(/.json/g, ''))
+  })
+  data.sort(compareNumbers)
+  res.render('index', { title: 'INDEX!', data: data });
 });
+
+router.get('/delete/:id', function(req, res, next) {
+  var id = req.params.id
+  res.redirect(302, '../')
+});
+
+function compareNumbers(a, b) {
+  return a - b
+}
 
 module.exports = router;

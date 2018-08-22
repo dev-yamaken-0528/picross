@@ -1,11 +1,34 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width,initial-scale=1'>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/create.css'>
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p><a href="/">HOME</a></p>
+    <div id="app">
+      <h1><%= title %></h1>
+      <p><a href="/">HOME</a></p>
+      <hr>
+      <select v-model="selected" v-on:change="changesize(selected)">
+        <option v-for="option in options" v-bind:value="option.value">{{ option.text }}</option>
+      </select>
+      <hr>
+      <table border="1" align="center">
+        <tr v-for="row in selected">
+          <td v-for="col in selected" v-on:click="selectedcell(row-1, col-1)" v-bind:id="(Number(row)-1)+'_'+(Number(col)-1)">{{row-1}}:{{col-1}}</td>
+        </tr>
+      </table>
+      <hr>
+      <form action="/create/save" method="post">
+        <input type="hidden" id="size" name="size" v-model="selected"></input>
+        <input type="hidden" id="saveitems" name="saveitems" value="">
+        <input type="submit">
+      </form>
+    </div>
   </body>
+  <script src="/javascripts/vue.min.js"></script>
+  <script src="/javascripts/create.js"></script>
 </html>

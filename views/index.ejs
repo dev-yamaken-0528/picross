@@ -1,19 +1,32 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width,initial-scale=1'>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/index.css'>
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-    <ul>
-      <li><a href="/">index</a></li>
-      <li><a href="/play/001">play(001)</a></li>
-      <li><a href="/play/002">play(002)</a></li>
-      <li><a href="/manager">manager</a></li>
-      <li><a href="/create">create</a></li>
-      <li><a href="/edit">edit</a></li>
-    </ul>
+    <div id="app">
+      <h1><%= title %></h1>
+      <hr>
+      <table border="1" align="center">
+        <% data.forEach(function(value){ %>
+        <tr>
+          <td><a href="/play/<%= value %>"><%= value %></a></td>
+          <td><a href="/play/<%= value %>">play</a></td>
+          <td>edit</td>
+          <td>delete</td>
+          <!--
+          <td><a href="/edit/<%= value %>">edit</a></td>
+          <td><a href="/delete/<%= value %>">delete</a></td>
+          -->
+        </tr>
+        <% }) %>
+      </table>
+      <hr>
+      <a href="/create">create</a>
+    </div>
   </body>
 </html>
