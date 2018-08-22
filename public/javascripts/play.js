@@ -1,4 +1,4 @@
-var start_ms = new Date().getTime();
+//var start_ms = new Date().getTime();
 
 var app = new Vue({
   el: '#app',
@@ -6,18 +6,7 @@ var app = new Vue({
     mode: 0,
     isShave: true,
     isCheck: false,
-    items: [
-      [1, 0, 0, 0],
-      [0, 1, 0, 0],
-      [0, 1, 0, 0],
-      [0, 0, 1, 0]
-    ],
-    selectedItems: [
-      [0, 0, 0, 0],
-      [0, 0, 0, 0],
-      [0, 0, 0, 0],
-      [0, 0, 0, 0],
-    ]
+    start_ms: new Date().getTime()
   },
   methods: {
     modeChange: function(selectMode) {
@@ -50,7 +39,7 @@ var app = new Vue({
       }
       if(this.items.toString() == this.selectedItems.toString()){
         event.target.style.backgroundColor = 'black'
-        var elapsed_ms = new Date().getTime() - start_ms;
+        var elapsed_ms = new Date().getTime() - this.start_ms;
         alert('clear! time['+elapsed_ms/1000+']秒')
       }
     },
@@ -98,6 +87,33 @@ var app = new Vue({
         this.isCheck = true
         return 'X'
       }
+    },
+    items: function() {
+      var data = document.getElementById('h_data').value.split(',')
+      var vh = document.getElementById('h_vh').value
+      var list = []
+      var index = 0
+      for(var i=0; i<vh; i++){
+        var row = []
+        for(var j=0; j<vh; j++){
+          row.push(data[index])
+          index += 1
+        }
+        list.push(row)
+      }
+      return list
+    },
+    selectedItems: function() {
+      var vh = document.getElementById('h_vh').value
+      var list = []
+      for(var i=0; i<vh; i++){
+        var row = []
+        for(var j=0; j<vh; j++){
+          row.push(0)
+        }
+        list.push(row)
+      }
+      return list
     }
   }
 })
