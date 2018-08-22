@@ -9,6 +9,7 @@ router.get('/', function(req, res, next) {
 
 router.post('/save', function(req, res, next) {
   var readdata = fs.readdirSync('./data/')
+  readdata.shift() //.gitkeep
   var max = 0
   if(readdata.length != 0){
     var tmpdata = []

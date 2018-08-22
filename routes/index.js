@@ -10,6 +10,7 @@ router.get('/', function(req, res, next) {
     data.push(filename.replace(/.json/g, ''))
   })
   data.sort(compareNumbers)
+  data.shift() //.gitkeep
   res.render('index', { title: 'INDEX!', data: data });
 });
 
