@@ -5,29 +5,26 @@ var fs = require('fs')
 /* GET home page. */
 router.get('/:id', function(req, res, next) {
   var id = req.params.id
-  var data = JSON.parse(fs.readFileSync('./data/' + id + '.json', 'utf8'));
-  var size = data.length
-  res.render('edit', { title: 'EDIT!', id: id, size: size, data: data });
+  var loaddata = JSON.parse(fs.readFileSync('./data/' + id + '.json', 'utf8'));
+  var loadsize = loaddata.length
+  res.render('edit', {id: id, loaddata: loaddata, loadsize: loadsize});
 });
 
 router.post('/save', function(req, res, next){
   var filename = req.body.filename
   var size = req.body.size
-  var saveitems = req.body.saveitems
-
-  var tmpitems = saveitems.split(',')
+  var tmpdata = req.body.savedata.split(',')
   var savedata = []
   var index = 0
   for(var i=0; i<size; i++){
     var row = []
     for(var j=0; j<size; j++){
-      row.push(tmpitems[index])
+      row.push(tmpdata[index])
       index += 1
     }
     savedata.push(row)
   }
   fs.writeFile('./data/'+filename+'.json', JSON.stringify(savedata))
-
   res.redirect(302, '../')
 });
 

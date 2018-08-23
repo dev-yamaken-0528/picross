@@ -4,14 +4,14 @@ var fs = require('fs');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  var readdata = fs.readdirSync('./data/')
-  var data = []
-  readdata.forEach(function(filename){
-    data.push(filename.replace(/.json/g, ''))
+  var filenames = fs.readdirSync('./data/')
+  var ids = []
+  filenames.forEach(function(filename){
+    ids.push(filename.replace(/.json/g, ''))
   })
-  data.sort(compareNumbers)
-  data.shift() //.gitkeep
-  res.render('index', { title: 'INDEX!', data: data });
+  ids.sort(compareNumbers)
+  ids.shift() //.gitkeep
+  res.render('index', {ids: ids});
 });
 
 router.get('/delete/:id', function(req, res, next) {

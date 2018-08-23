@@ -4,11 +4,10 @@ var fs = require('fs');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('create', { title: 'ステージ作成' });
+  res.render('create', {});
 });
 
 router.post('/save', function(req, res, next) {
-  // ファイル名
   var readdir = fs.readdirSync('./data/')
   readdir.shift() //.gitkeep
   var max = 0
@@ -21,7 +20,7 @@ router.post('/save', function(req, res, next) {
     max = filenames[filenames.length-1]
   }
   var filename = Number(max)+1
-  // 保存
+
   var tmpdata = req.body.savedata.split(',')
   var savedata = []
   var index = 0

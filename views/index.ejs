@@ -3,26 +3,26 @@
   <head>
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width,initial-scale=1'>
-    <title><%= title %></title>
+    <title>ピクロス</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel='stylesheet' href='/stylesheets/index.css'>
   </head>
   <body>
     <div id="app">
-      <h1><%= title %></h1>
+      <h1>HOME</h1>
       <hr>
       <table border="1" align="center">
-        <% data.forEach(function(value){ %>
+        <% ids.forEach(function(id){ %>
         <tr>
-          <td><a href="/play/<%= value %>"><%= value %></a></td>
-          <td><a href="/play/<%= value %>">play</a></td>
-          <td><a href="/edit/<%= value %>">edit</a></td>
-          <td><a href="/delete/<%= value %>">delete</a></td>
+          <td><a href="/play/<%= id %>"><%= id %></a></td>
+          <td><a href="/play/<%= id %>">遊ぶ</a></td>
+          <td><a href="/edit/<%= id %>">編集する</a></td>
+          <td><a href="/delete/<%= id %>">削除する</a></td>
         </tr>
         <% }) %>
       </table>
       <hr>
-      <a href="/create">create</a>
+      <a href="/create">ステージを作る</a>
     </div>
   </body>
 </html>

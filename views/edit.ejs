@@ -3,27 +3,27 @@
   <head>
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width,initial-scale=1'>
-    <title><%= title %></title>
+    <title>ピクロス</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel='stylesheet' href='/stylesheets/edit.css' />
   </head>
   <body>
     <div id="app">
-      <h1><%= title %>[<%= id %>]</h1>
+      <h1>編集[<%= id %>]</h1>
       <p><a href="/">HOME</a></p>
       <hr>
-      <input type="hidden" id="h_data" value="<%= data %>">
-      <input type="hidden" id="h_size" value="<%= size %>">
+      <input type="hidden" id="loaddata" value="<%= loaddata %>">
+      <input type="hidden" id="loadsize" value="<%= loadsize %>">
       <table border="1" align="center">
-        <tr v-for="row in <%= size %>">
-          <td v-for="col in <%= size %>" :id="(Number(row)-1)+'_'+(Number(col)-1)" @click="clickCell( Number(row)-1, Number(col)-1 )"></td>
+        <tr v-for="(row,rowindex) in loaddata">
+          <td v-for="(cell,colindex) in row" :id="(rowindex+'_'+colindex)" @click="clickCell(rowindex, colindex)"></td>
         </tr>
       </table>
       <hr>
       <form action="/edit/save" method="post">
         <input type="hidden" id="filename" name="filename" value="<%= id %>">
-        <input type="hidden" id="size" name="size" value="<%= size %>">
-        <input type="hidden" id="saveitems" name="saveitems">
+        <input type="hidden" id="size" name="size" value="<%= loadsize %>">
+        <input type="hidden" id="savedata" name="savedata">
         <input type="submit">
       </form>
     </div>

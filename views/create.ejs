@@ -3,27 +3,28 @@
   <head>
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width,initial-scale=1'>
-    <title><%= title %></title>
+    <title>ピクロス</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel='stylesheet' href='/stylesheets/create.css'>
   </head>
   <body>
     <div id="app">
-      <h1><%= title %></h1>
+      <h1>作成</h1>
       <hr>
+      <span>マス目</span>
       <select v-model="selected" @change="changeSize(selected)">
         <option v-for="option in options" :value="option.value">{{ option.text }}</option>
       </select>
       <hr>
       <table border="1" align="center">
-        <tr v-for="row in selected">
-          <td v-for="col in selected" :id="(Number(row)-1)+'_'+(Number(col)-1)" @click="clickCell(row-1,col-1)"></td>
+        <tr v-for="(row,rowindex) in savedata">
+          <td v-for="(cell,colindex) in row" :id="(rowindex+'_'+colindex)" @click="clickCell(rowindex,colindex)"></td>
         </tr>
       </table>
       <hr>
       <form action="/create/save" method="post">
         <input type="hidden" id="size" name="size" v-model="selected"></input>
-        <input type="hidden" id="savedata" name="savedata" value="">
+        <input type="hidden" id="savedata" name="savedata">
         <input type="submit">
       </form>
       <hr>
