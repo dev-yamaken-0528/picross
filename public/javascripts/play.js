@@ -1,10 +1,28 @@
 var app = new Vue({
   el: '#app',
   data: {
+    loaddata: [],
+    playdata: [],
     mode: 0,
     isShaveMode: true,
     isCheckMode: false,
     start_ms: new Date().getTime()
+  },
+  created: function(){
+    var size = document.getElementById('size').value
+    var loaddata = document.getElementById('loaddata').value.split(',')
+    var index = 0
+    for(var i=0; i<size; i++){
+      var loaddatarow = []
+      var playdatarow = []
+      for(var j=0; j<size; j++){
+        playdatarow.push(0)
+        loaddatarow.push(Number(loaddata[index]))
+        index += 1
+      }
+      this.loaddata.push(loaddatarow)
+      this.playdata.push(playdatarow)
+    }
   },
   methods: {
     modeChange: function(selectMode) {
@@ -18,42 +36,32 @@ var app = new Vue({
         this.isCheckMode = true
       }
     },
-    selectCell: function(event) {
-      var selectedRowIndex = event.target.id.split('_')[0]
-      var selectedCellIndex = event.target.id.split('_')[1]
-      if(this.mode == 0){
-        if(event.target.style.backgroundColor == 'grey'){
-          return
-        }
-        if(event.target.style.backgroundColor == 'black'){
-          this.selectedItems[selectedRowIndex][selectedCellIndex] = 0;
-          event.target.style.backgroundColor = 'white'
-        }else{
-          this.selectedItems[selectedRowIndex][selectedCellIndex] = 1;
-          event.target.style.backgroundColor = 'black'
-        }
+    clickCell: function(rowindex, colindex) {
+      if(this.isCheckMode){
+        this.playdata[rowindex][colindex] = 0
+        document.getElementById(rowindex+'_'+colindex).style.backgroundColor = 'white'
+        document.getElementById(rowindex+'_'+colindex).innerHTML = '&#x2613;'
       }
-      if(this.mode == 1){
-        if(event.target.style.backgroundColor == 'grey'){
-          event.target.innerText = ''
-          event.target.style.backgroundColor = 'white'
+      if(this.isShaveMode){
+        if(this.playdata[rowindex][colindex] == 1){
+          this.playdata[rowindex][colindex] = 0
+          document.getElementById(rowindex+'_'+colindex).style.backgroundColor = 'white'
         }else{
-          this.selectedItems[selectedRowIndex][selectedCellIndex] = 0;
-          event.target.innerText = 'X'
-          event.target.style.backgroundColor = 'grey'
+          this.playdata[rowindex][colindex] = 1
+          document.getElementById(rowindex+'_'+colindex).style.backgroundColor = 'black'
+        document.getElementById(rowindex+'_'+colindex).innerHTML = ''
+          if(this.playdata.toString() == this.loaddata.toString()){
+            var elapsed_ms = new Date().getTime() - this.start_ms;
+            alert('clear! time['+elapsed_ms/1000+']秒')
+          }
         }
-      }
-      if(this.items.toString() == this.selectedItems.toString()){
-        event.target.style.backgroundColor = 'black'
-        var elapsed_ms = new Date().getTime() - this.start_ms;
-        alert('clear! time['+elapsed_ms/1000+']秒')
       }
     },
     headNum: function(index) {
       var list = []
       var cols = ''
-      for(var i=0; i<this.items.length; i++){
-        cols = cols + this.items[i][index]
+      for(var i=0; i<this.loaddata.length; i++){
+        cols = cols + this.loaddata[i][index]
       }
       cols.split('0').forEach(function(col){
         if(col.length != 0){
@@ -68,8 +76,8 @@ var app = new Vue({
     sideNum: function(index) {
       var list=[]
       var rows = ''
-      for(var i=0; i<this.items.length; i++){
-        rows = rows + this.items[index][i]
+      for(var i=0; i<this.loaddata.length; i++){
+        rows = rows + this.loaddata[index][i]
       }
       rows.split('0').forEach(function(row){
         if(row.length != 0){
@@ -83,33 +91,6 @@ var app = new Vue({
     }
   },
   computed: {
-    items: function() {
-      var data = document.getElementById('h_data').value.split(',')
-      var vh = document.getElementById('h_vh').value
-      var list = []
-      var index = 0
-      for(var i=0; i<vh; i++){
-        var row = []
-        for(var j=0; j<vh; j++){
-          row.push(data[index])
-          index += 1
-        }
-        list.push(row)
-      }
-      return list
-    },
-    selectedItems: function() {
-      var vh = document.getElementById('h_vh').value
-      var list = []
-      for(var i=0; i<vh; i++){
-        var row = []
-        for(var j=0; j<vh; j++){
-          row.push(0)
-        }
-        list.push(row)
-      }
-      return list
-    }
   }
 })
 

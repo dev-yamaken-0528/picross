@@ -3,33 +3,32 @@
   <head>
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width,initial-scale=1'>
-    <title><%= title %></title>
+    <title>ピクロス</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel='stylesheet' href='/stylesheets/play.css'>
   </head>
   <body>
     <div id="app">
-      <h1><%= title %></h1>
-      <p><a href="/">HOME</a></p>
-      <hr>
-      <input type="hidden" id="h_data" value="<%= data %>">
-      <input type="hidden" id="h_vh" value="<%= vh %>">
+      <input type="hidden" id="loaddata" value="<%= loaddata %>">
+      <input type="hidden" id="size" value="<%= size %>">
       <table border="1" align="center">
         <tr>
           <td></td>
-          <td v-for="n in items.length">
+          <td v-for="n in loaddata.length">
             <p v-for="num in headNum(n-1)">({{ num }})</p>
           </td>
         </tr>
-        <tr v-for="(row, rowindex) in items">
+        <tr v-for="(row, rowindex) in loaddata">
           <td>
             <span v-for="num in sideNum(rowindex)">({{ num }})</span>
           </td>
-          <td v-for="(cell, cellindex) in row" v-on:click="selectCell" v-bind:id="rowindex+'_'+cellindex"></td>
+          <td v-for="(cell, colindex) in row" :id="rowindex+'_'+colindex" @click="clickCell(rowindex,colindex)"></td>
         </tr>
       </table>
-      <button v-on:click="modeChange(0)" class="btn" v-bind:class="{btn_clicked: isShaveMode}">&#9632;</button>
-      <button v-on:click="modeChange(1)" class="btn" v-bind:class="{btn_clicked: isCheckMode}">&#x2613;</button>
+      <button v-on:click="modeChange(0)" class="btn" :class="{btn_clicked: isShaveMode}">&#9632;</button>
+      <button v-on:click="modeChange(1)" class="btn" :class="{btn_clicked: isCheckMode}">&#x2613;</button>
+      <hr>
+      <p><a href="/">HOME</a></p>
     </div>
   </body>
   <script src="/javascripts/vue.min.js"></script>

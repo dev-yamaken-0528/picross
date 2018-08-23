@@ -4,10 +4,10 @@ var fs = require('fs')
 
 /* GET home page. */
 router.get('/:id', function(req, res, next) {
-  var id = req.params.id
-  var data = JSON.parse(fs.readFileSync('./data/' + id + '.json', 'utf8'));
-  var vh = data.length
-  res.render('play', { title: 'PLAY!', data: data, vh: vh});
+  var filename = req.params.id
+  var loaddata = JSON.parse(fs.readFileSync('./data/' + filename + '.json', 'utf8'));
+  var size = loaddata.length
+  res.render('play', {loaddata: loaddata, size: size});
 });
 
 module.exports = router;
