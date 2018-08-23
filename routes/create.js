@@ -4,35 +4,36 @@ var fs = require('fs');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('create', { title: 'CREATE!' });
+  res.render('create', { title: 'ステージ作成' });
 });
 
 router.post('/save', function(req, res, next) {
-  var readdata = fs.readdirSync('./data/')
-  readdata.shift() //.gitkeep
+  // ファイル名
+  var readdir = fs.readdirSync('./data/')
+  readdir.shift() //.gitkeep
   var max = 0
-  if(readdata.length != 0){
-    var tmpdata = []
-    readdata.forEach(function(filename){
-      tmpdata.push(filename.replace(/.json/g, ''))
+  if(readdir.length != 0){
+    var filenames = []
+    readdir.forEach(function(filename){
+      filenames.push(filename.replace(/.json/g, ''))
     })
-    tmpdata.sort(compareNumbers)
-    max = tmpdata[tmpdata.length-1]
+    filenames.sort(compareNumbers)
+    max = filenames[filenames.length-1]
   }
-  var nextid = Number(max)+1
-
-  var tmpitems = req.body.saveitems.split(',')
+  var filename = Number(max)+1
+  // 保存
+  var tmpdata = req.body.savedata.split(',')
   var savedata = []
   var index = 0
   for(var i=0; i<req.body.size; i++){
     var row = []
     for(var j=0; j<req.body.size; j++){
-      row.push(tmpitems[index])
+      row.push(tmpdata[index])
       index += 1
     }
     savedata.push(row)
   }
-  fs.writeFile('./data/'+nextid+'.json', JSON.stringify(savedata))
+  fs.writeFile('./data/'+filename+'.json', JSON.stringify(savedata))
   res.redirect(302, '../')
 });
 

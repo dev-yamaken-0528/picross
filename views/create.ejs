@@ -10,23 +10,24 @@
   <body>
     <div id="app">
       <h1><%= title %></h1>
-      <p><a href="/">HOME</a></p>
       <hr>
-      <select v-model="selected" v-on:change="changesize(selected)">
-        <option v-for="option in options" v-bind:value="option.value">{{ option.text }}</option>
+      <select v-model="selected" @change="changeSize(selected)">
+        <option v-for="option in options" :value="option.value">{{ option.text }}</option>
       </select>
       <hr>
       <table border="1" align="center">
         <tr v-for="row in selected">
-          <td v-for="col in selected" v-on:click="selectedcell(row-1, col-1)" v-bind:id="(Number(row)-1)+'_'+(Number(col)-1)">{{row-1}}:{{col-1}}</td>
+          <td v-for="col in selected" :id="(Number(row)-1)+'_'+(Number(col)-1)" @click="clickCell(row-1,col-1)"></td>
         </tr>
       </table>
       <hr>
       <form action="/create/save" method="post">
         <input type="hidden" id="size" name="size" v-model="selected"></input>
-        <input type="hidden" id="saveitems" name="saveitems" value="">
+        <input type="hidden" id="savedata" name="savedata" value="">
         <input type="submit">
       </form>
+      <hr>
+      <p><a href="/">HOME</a></p>
     </div>
   </body>
   <script src="/javascripts/vue.min.js"></script>
