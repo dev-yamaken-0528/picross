@@ -28,9 +28,8 @@
           <td v-for="(cell, cellindex) in row" v-on:click="selectCell" v-bind:id="rowindex+'_'+cellindex"></td>
         </tr>
       </table>
-      <p>選択中 : {{ modeLabel }}</p>
-      <button v-on:click="modeChange(0)" class="btn" v-bind:class="{btn_clicked: isShave}">■</button>
-      <button v-on:click="modeChange(1)" class="btn" v-bind:class="{btn_clicked: isCheck}">×</button>
+      <button v-on:click="modeChange(0)" class="btn" v-bind:class="{btn_clicked: isShaveMode}">&#9632;</button>
+      <button v-on:click="modeChange(1)" class="btn" v-bind:class="{btn_clicked: isCheckMode}">&#x2613;</button>
     </div>
   </body>
   <script src="/javascripts/vue.min.js"></script>

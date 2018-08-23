@@ -2,13 +2,21 @@ var app = new Vue({
   el: '#app',
   data: {
     mode: 0,
-    isShave: true,
-    isCheck: false,
+    isShaveMode: true,
+    isCheckMode: false,
     start_ms: new Date().getTime()
   },
   methods: {
     modeChange: function(selectMode) {
       this.mode = selectMode
+      if(this.mode == 0){
+        this.isShaveMode = true
+        this.isCheckMode = false
+      }
+      if(this.mode == 1){
+        this.isShaveMode = false
+        this.isCheckMode = true
+      }
     },
     selectCell: function(event) {
       var selectedRowIndex = event.target.id.split('_')[0]
@@ -75,17 +83,6 @@ var app = new Vue({
     }
   },
   computed: {
-    modeLabel: function() {
-      if(this.mode == 0){
-        this.isShave = true
-        this.isCheck = false
-        return '■'
-      }else{
-        this.isShave = false
-        this.isCheck = true
-        return 'X'
-      }
-    },
     items: function() {
       var data = document.getElementById('h_data').value.split(',')
       var vh = document.getElementById('h_vh').value
