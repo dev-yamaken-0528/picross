@@ -16,7 +16,9 @@ router.get('/', function(req, res, next) {
 
 router.get('/delete/:id', function(req, res, next) {
   var id = req.params.id
-  res.redirect(302, '../')
+  fs.unlink('./data/'+id+'.json', function(err){
+    res.redirect(302, '../')
+  })
 });
 
 function compareNumbers(a, b) {
