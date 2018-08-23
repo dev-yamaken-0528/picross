@@ -4,14 +4,15 @@
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width,initial-scale=1'>
     <title>ピクロス</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/reboot.css'>
+    <link rel='stylesheet' href='/stylesheets/style.css'>
     <link rel='stylesheet' href='/stylesheets/index.css'>
   </head>
   <body>
     <div id="app">
       <h1>HOME</h1>
       <hr>
-      <table border="1" align="center">
+      <table>
         <% ids.forEach(function(id){ %>
         <tr>
           <td><a href="/play/<%= id %>"><%= id %></a></td>

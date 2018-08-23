@@ -4,7 +4,8 @@
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width,initial-scale=1'>
     <title>ピクロス</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/reboot.css'>
+    <link rel='stylesheet' href='/stylesheets/style.css'>
     <link rel='stylesheet' href='/stylesheets/play.css'>
   </head>
   <body>
@@ -12,7 +13,7 @@
       <input type="hidden" id="loaddata" value="<%= loaddata %>">
       <input type="hidden" id="size" value="<%= size %>">
       <h1>ステージ[<%= id %>]</h1>
-      <table border="1" align="center">
+      <table>
         <tr>
           <td></td>
           <td v-for="n in loaddata.length">
@@ -26,8 +27,8 @@
           <td v-for="(cell, colindex) in row" :id="rowindex+'_'+colindex" @click="clickCell(rowindex,colindex)"></td>
         </tr>
       </table>
-      <button v-on:click="modeChange(0)" class="btn" :class="{btn_clicked: isShaveMode}">&#9632;</button>
-      <button v-on:click="modeChange(1)" class="btn" :class="{btn_clicked: isCheckMode}">&#x2613;</button>
+      <button @click="modeChange(0)">&#9632;</button>
+      <button @click="modeChange(1)">&#x2613;</button>
       <hr>
       <p><a href="/">HOME</a></p>
     </div>

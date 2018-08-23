@@ -4,17 +4,17 @@
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width,initial-scale=1'>
     <title>ピクロス</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link rel='stylesheet' href='/stylesheets/edit.css' />
+    <link rel='stylesheet' href='/stylesheets/reboot.css'>
+    <link rel='stylesheet' href='/stylesheets/style.css'>
+    <link rel='stylesheet' href='/stylesheets/edit.css'>
   </head>
   <body>
     <div id="app">
       <h1>編集[<%= id %>]</h1>
-      <p><a href="/">HOME</a></p>
       <hr>
       <input type="hidden" id="loaddata" value="<%= loaddata %>">
       <input type="hidden" id="loadsize" value="<%= loadsize %>">
-      <table border="1" align="center">
+      <table>
         <tr v-for="(row,rowindex) in loaddata">
           <td v-for="(cell,colindex) in row" :id="(rowindex+'_'+colindex)" @click="clickCell(rowindex, colindex)"></td>
         </tr>
@@ -26,6 +26,8 @@
         <input type="hidden" id="savedata" name="savedata">
         <input type="submit">
       </form>
+      <hr>
+      <p><a href="/">HOME</a></p>
     </div>
   </body>
   <script src="/javascripts/vue.min.js"></script>

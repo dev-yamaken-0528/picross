@@ -4,7 +4,8 @@
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width,initial-scale=1'>
     <title>ピクロス</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/reboot.css'>
+    <link rel='stylesheet' href='/stylesheets/style.css'>
     <link rel='stylesheet' href='/stylesheets/create.css'>
   </head>
   <body>
@@ -16,7 +17,7 @@
         <option v-for="option in options" :value="option.value">{{ option.text }}</option>
       </select>
       <hr>
-      <table border="1" align="center">
+      <table>
         <tr v-for="(row,rowindex) in savedata">
           <td v-for="(cell,colindex) in row" :id="(rowindex+'_'+colindex)" @click="clickCell(rowindex,colindex)"></td>
         </tr>
