@@ -25,8 +25,8 @@ var app = new Vue({
     }
   },
   methods: {
-    modeChange: function(selectMode) {
-      this.mode = selectMode
+    modeChange: function(selectedMode) {
+      this.mode = selectedMode
       if(this.mode == 0){
         this.isShaveMode = true
         this.isCheckMode = false

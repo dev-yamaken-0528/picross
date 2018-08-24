@@ -4,53 +4,35 @@
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width,initial-scale=1'>
     <title>ピクロス</title>
-    <link rel='stylesheet' href='/stylesheets/reboot.css'>
-    <link rel='stylesheet' href='/stylesheets/lit.css'>
+    <link rel='stylesheet' href='/stylesheets/normalize.css'>
     <link rel='stylesheet' href='/stylesheets/style.css'>
-    <link rel='stylesheet' href='/stylesheets/play.css'>
   </head>
   <body>
-    <div id="app" class="c">
+    <div id="app">
       <input type="hidden" id="loaddata" value="<%= loaddata %>">
       <input type="hidden" id="size" value="<%= size %>">
 
-      <div class="row card">
-        <div class="col">
-          <h1>ステージ[<%= id %>]</h1>
-        </div>
-      </div>
+      <h1>ステージ[<%= id %>]</h1>
 
-      <div class="row card">
-        <div class="col">
-          <table>
-            <tr>
-              <td></td>
-              <td v-for="n in loaddata.length">
-                <p v-for="num in headNum(n-1)">({{ num }})</p>
-              </td>
-            </tr>
-            <tr v-for="(row, rowindex) in loaddata">
-              <td>
-                <span v-for="num in sideNum(rowindex)">({{ num }})</span>
-              </td>
-              <td v-for="(cell, colindex) in row" :id="rowindex+'_'+colindex" @click="clickCell(rowindex,colindex)"></td>
-            </tr>
-          </table>
-        </div>
-      </div>
+      <table class="square_table">
+        <tr>
+          <td class="square_td"></td>
+          <td v-for="n in loaddata.length" class="square_td">
+            <p v-for="num in headNum(n-1)">{{ num }}</p>
+          </td>
+        </tr>
+        <tr v-for="(row, rowindex) in loaddata">
+          <td class="square_td">
+            <span v-for="num in sideNum(rowindex)">{{ num }}</span>
+          </td>
+          <td v-for="(cell, colindex) in row" :id="rowindex+'_'+colindex" @click="clickCell(rowindex,colindex)" class="square_td"></td>
+        </tr>
+      </table>
 
-      <div class="row card">
-        <div class="col">
-          <button @click="modeChange(0)" class="btn">&#9632;</button>
-          <button @click="modeChange(1)" class="btn">&#x2613;</button>
-        </div>
-      </div>
+      <button @click="modeChange(0)" class="btn" :class="{ btn_active: isShaveMode }">&#9632;</button>
+      <button @click="modeChange(1)" class="btn" :class="{ btn_active: isCheckMode }">&#x2613;</button>
 
-      <div class="row card">
-        <div class="col">
-          <p><a href="/" class="btn">HOME</a></p>
-        </div>
-      </div>
+      <p><a href="/" class="btn">HOME</a></p>
 
     </div>
   </body>

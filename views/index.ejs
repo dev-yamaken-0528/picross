@@ -4,40 +4,26 @@
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width,initial-scale=1'>
     <title>ピクロス</title>
-    <link rel='stylesheet' href='/stylesheets/reboot.css'>
-    <link rel='stylesheet' href='/stylesheets/lit.css'>
+    <link rel='stylesheet' href='/stylesheets/normalize.css'>
     <link rel='stylesheet' href='/stylesheets/style.css'>
-    <link rel='stylesheet' href='/stylesheets/index.css'>
   </head>
   <body>
-    <div id="app" class="c">
+    <div id="app">
 
-      <div class="row card">
-        <div class="col">
-          <h1>HOME</h1>
-        </div>
-      </div>
+      <h1>HOME</h1>
 
-      <div class="row card">
-        <div class="col">
-          <a href="/create" class="btn">ステージを作る</a>
-        </div>
-      </div>
+      <a href="/create" class="btn">作成</a>
 
-      <div class="row card">
-        <div class="col">
-          <table>
-            <% ids.forEach(function(id){ %>
-            <tr>
-              <td><a href="/play/<%= id %>"><%= id %></a></td>
-              <td><a href="/play/<%= id %>" class="btn">遊ぶ</a></td>
-              <td><a href="/edit/<%= id %>" class="btn">編集する</a></td>
-              <td><a href="/delete/<%= id %>" class="btn">削除する</a></td>
-            </tr>
-            <% }) %>
-          </table>
-        </div>
-      </div>
+      <table class="index_table">
+        <% ids.forEach(function(id){ %>
+        <tr>
+          <td class="index_td"><a href="/play/<%= id %>"><%= id %></a></td>
+          <td class="index_td"><a href="/play/<%= id %>" class="btn">遊ぶ</a></td>
+          <td class="index_td"><a href="/edit/<%= id %>" class="btn">編集</a></td>
+          <td class="index_td"><a href="/delete/<%= id %>" class="btn">削除</a></td>
+        </tr>
+        <% }) %>
+      </table>
 
     </div>
   </body>

@@ -3,16 +3,80 @@ body {
 }
 
 #app {
+  width: 90%;
+  margin: auto;
   text-align: center;
 }
 
-table {
-  margin-right: auto;
-  margin-left: auto;
+.index_table {
+  width: 80%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin: auto;
 }
-
-td {
+.index_td {
   border: solid 1px;
-  padding: 10px;
 }
 
+.square_table {
+  table-layout: fixed;
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin: auto;
+}
+
+.square_td {
+  border: solid 1px;
+  width: 10px;
+  height: 10px;
+  font-size: 10px;
+}
+
+a {
+  text-decoration: none;
+}
+
+
+.btn {
+  display: inline-block;
+  border: 1px solid #9ec34b;
+  font-size: 16px;
+  color: #9ec34b;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 5px;
+  margin: 5px;
+  border-radius: 4px;
+  transition: .4s;
+}
+.btn:hover {
+  background-color: #9ec34b;
+  border-color: #cbe585;
+  color: #FFF;
+}
+.btn_active {
+  background-color: #9ec34b;
+  border-color: #cbe585;
+  color: #FFF;
+}
+
+/*
+.btn {
+  display: inline-block;
+  max-width: 180px;
+  text-align: left;
+  border: 2px solid #9ec34b;
+  font-size: 16px;
+  color: #9ec34b;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: .4s;
+}
+.btn:hover {
+  background-color: #9ec34b;
+  border-color: #cbe585;
+  color: #FFF;
+}
+*/

@@ -4,48 +4,30 @@
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width,initial-scale=1'>
     <title>ピクロス</title>
-    <link rel='stylesheet' href='/stylesheets/reboot.css'>
-    <link rel='stylesheet' href='/stylesheets/lit.css'>
+    <link rel='stylesheet' href='/stylesheets/normalize.css'>
     <link rel='stylesheet' href='/stylesheets/style.css'>
-    <link rel='stylesheet' href='/stylesheets/edit.css'>
   </head>
   <body>
-    <div id="app" class="c">
+    <div id="app">
       <input type="hidden" id="loaddata" value="<%= loaddata %>">
       <input type="hidden" id="loadsize" value="<%= loadsize %>">
       
-      <div class="row card">
-        <div class="col">
-          <h1>編集[<%= id %>]</h1>
-        </div>
-      </div>
+      <h1>編集[<%= id %>]</h1>
 
-      <div class="row card">
-        <div class="col">
-          <table>
-            <tr v-for="(row,rowindex) in loaddata">
-              <td v-for="(cell,colindex) in row" :id="(rowindex+'_'+colindex)" @click="clickCell(rowindex, colindex)"></td>
-            </tr>
-          </table>
-        </div>
-      </div>
+      <table class="square_table">
+        <tr v-for="(row,rowindex) in loaddata">
+          <td v-for="(cell,colindex) in row" :id="(rowindex+'_'+colindex)" @click="clickCell(rowindex, colindex)" class="square_td"></td>
+        </tr>
+      </table>
 
-      <div class="row card">
-        <div class="col">
-          <form action="/edit/save" method="post">
-            <input type="hidden" id="filename" name="filename" value="<%= id %>">
-            <input type="hidden" id="size" name="size" value="<%= loadsize %>">
-            <input type="hidden" id="savedata" name="savedata">
-            <input type="submit" class="btn" value="保存する">
-          </form>      
-        </div>
-      </div>
+      <form action="/edit/save" method="post">
+        <input type="hidden" id="filename" name="filename" value="<%= id %>">
+        <input type="hidden" id="size" name="size" value="<%= loadsize %>">
+        <input type="hidden" id="savedata" name="savedata">
+        <input type="submit" value="保存">
+      </form>      
 
-      <div class="row card">
-        <div class="col">
-          <p><a href="/" class="btn">HOME</a></p>
-        </div>
-      </div>
+      <p><a href="/">HOME</a></p>
 
     </div>
   </body>
