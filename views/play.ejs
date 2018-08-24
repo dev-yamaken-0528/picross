@@ -10,28 +10,48 @@
     <link rel='stylesheet' href='/stylesheets/play.css'>
   </head>
   <body>
-    <div id="app">
+    <div id="app" class="c">
       <input type="hidden" id="loaddata" value="<%= loaddata %>">
       <input type="hidden" id="size" value="<%= size %>">
-      <h1>ステージ[<%= id %>]</h1>
-      <table>
-        <tr>
-          <td></td>
-          <td v-for="n in loaddata.length">
-            <p v-for="num in headNum(n-1)">({{ num }})</p>
-          </td>
-        </tr>
-        <tr v-for="(row, rowindex) in loaddata">
-          <td>
-            <span v-for="num in sideNum(rowindex)">({{ num }})</span>
-          </td>
-          <td v-for="(cell, colindex) in row" :id="rowindex+'_'+colindex" @click="clickCell(rowindex,colindex)"></td>
-        </tr>
-      </table>
-      <button @click="modeChange(0)">&#9632;</button>
-      <button @click="modeChange(1)">&#x2613;</button>
-      <hr>
-      <p><a href="/">HOME</a></p>
+
+      <div class="row card">
+        <div class="col">
+          <h1>ステージ[<%= id %>]</h1>
+        </div>
+      </div>
+
+      <div class="row card">
+        <div class="col">
+          <table>
+            <tr>
+              <td></td>
+              <td v-for="n in loaddata.length">
+                <p v-for="num in headNum(n-1)">({{ num }})</p>
+              </td>
+            </tr>
+            <tr v-for="(row, rowindex) in loaddata">
+              <td>
+                <span v-for="num in sideNum(rowindex)">({{ num }})</span>
+              </td>
+              <td v-for="(cell, colindex) in row" :id="rowindex+'_'+colindex" @click="clickCell(rowindex,colindex)"></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="row card">
+        <div class="col">
+          <button @click="modeChange(0)" class="btn">&#9632;</button>
+          <button @click="modeChange(1)" class="btn">&#x2613;</button>
+        </div>
+      </div>
+
+      <div class="row card">
+        <div class="col">
+          <p><a href="/" class="btn">HOME</a></p>
+        </div>
+      </div>
+
     </div>
   </body>
   <script src="/javascripts/vue.min.js"></script>

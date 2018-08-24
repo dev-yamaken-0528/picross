@@ -10,25 +10,43 @@
     <link rel='stylesheet' href='/stylesheets/edit.css'>
   </head>
   <body>
-    <div id="app">
-      <h1>編集[<%= id %>]</h1>
-      <hr>
+    <div id="app" class="c">
       <input type="hidden" id="loaddata" value="<%= loaddata %>">
       <input type="hidden" id="loadsize" value="<%= loadsize %>">
-      <table>
-        <tr v-for="(row,rowindex) in loaddata">
-          <td v-for="(cell,colindex) in row" :id="(rowindex+'_'+colindex)" @click="clickCell(rowindex, colindex)"></td>
-        </tr>
-      </table>
-      <hr>
-      <form action="/edit/save" method="post">
-        <input type="hidden" id="filename" name="filename" value="<%= id %>">
-        <input type="hidden" id="size" name="size" value="<%= loadsize %>">
-        <input type="hidden" id="savedata" name="savedata">
-        <input type="submit">
-      </form>
-      <hr>
-      <p><a href="/">HOME</a></p>
+      
+      <div class="row card">
+        <div class="col">
+          <h1>編集[<%= id %>]</h1>
+        </div>
+      </div>
+
+      <div class="row card">
+        <div class="col">
+          <table>
+            <tr v-for="(row,rowindex) in loaddata">
+              <td v-for="(cell,colindex) in row" :id="(rowindex+'_'+colindex)" @click="clickCell(rowindex, colindex)"></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="row card">
+        <div class="col">
+          <form action="/edit/save" method="post">
+            <input type="hidden" id="filename" name="filename" value="<%= id %>">
+            <input type="hidden" id="size" name="size" value="<%= loadsize %>">
+            <input type="hidden" id="savedata" name="savedata">
+            <input type="submit" class="btn" value="保存する">
+          </form>      
+        </div>
+      </div>
+
+      <div class="row card">
+        <div class="col">
+          <p><a href="/" class="btn">HOME</a></p>
+        </div>
+      </div>
+
     </div>
   </body>
   <script src="/javascripts/vue.min.js"></script>

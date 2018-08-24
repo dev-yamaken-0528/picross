@@ -10,27 +10,49 @@
     <link rel='stylesheet' href='/stylesheets/create.css'>
   </head>
   <body>
-    <div id="app">
-      <h1>作成</h1>
-      <hr>
-      <span>マス目</span>
-      <select v-model="selected" @change="changeSize(selected)">
-        <option v-for="option in options" :value="option.value">{{ option.text }}</option>
-      </select>
-      <hr>
-      <table>
-        <tr v-for="(row,rowindex) in savedata">
-          <td v-for="(cell,colindex) in row" :id="(rowindex+'_'+colindex)" @click="clickCell(rowindex,colindex)"></td>
-        </tr>
-      </table>
-      <hr>
-      <form action="/create/save" method="post">
-        <input type="hidden" id="size" name="size" v-model="selected"></input>
-        <input type="hidden" id="savedata" name="savedata">
-        <input type="submit">
-      </form>
-      <hr>
-      <p><a href="/">HOME</a></p>
+    <div id="app" class="c">
+
+      <div class="row card">
+        <div class="col">
+          <h1>作成</h1>
+        </div>
+      </div>
+
+      <div class="row card">
+        <div class="col">
+          <span>マス目</span>
+          <select v-model="selected" @change="changeSize(selected)">
+            <option v-for="option in options" :value="option.value">{{ option.text }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row card">
+        <div class="col">
+          <table>
+            <tr v-for="(row,rowindex) in savedata">
+              <td v-for="(cell,colindex) in row" :id="(rowindex+'_'+colindex)" @click="clickCell(rowindex,colindex)"></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="row card">
+        <div class="col">
+          <form action="/create/save" method="post">
+            <input type="hidden" id="size" name="size" v-model="selected"></input>
+            <input type="hidden" id="savedata" name="savedata">
+            <input type="submit" class="btn" value="保存する">
+          </form>
+        </div>
+      </div>
+
+      <div class="row card">
+        <div class="col">
+          <p><a href="/" class="btn">HOME</a></p>
+        </div>
+      </div>
+
     </div>
   </body>
   <script src="/javascripts/vue.min.js"></script>
