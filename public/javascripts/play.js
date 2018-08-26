@@ -40,7 +40,11 @@ var app = new Vue({
       if(this.isCheckMode){
         this.playdata[rowindex][colindex] = 0
         document.getElementById(rowindex+'_'+colindex).style.backgroundColor = 'white'
-        document.getElementById(rowindex+'_'+colindex).innerHTML = '&#x2613;'
+        if(document.getElementById(rowindex+'_'+colindex).innerHTML == ''){
+          document.getElementById(rowindex+'_'+colindex).innerHTML = '&#x2613;'
+        }else{
+          document.getElementById(rowindex+'_'+colindex).innerHTML = ''
+        }
       }
       if(this.isShaveMode){
         if(this.playdata[rowindex][colindex] == 1){

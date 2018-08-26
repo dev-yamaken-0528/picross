@@ -22,7 +22,7 @@ body {
   table-layout: fixed;
   border-collapse: collapse;
   border-spacing: 0;
-  margin: auto;
+  margin: 20px auto 20px auto;
 }
 
 .square_td {
