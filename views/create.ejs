@@ -11,6 +11,8 @@
     <div id="app">
 
       <h1>作成</h1>
+      
+      <hr>
 
       <span>マス目</span>
       <select v-model="selected" @change="changeSize(selected)">
@@ -23,11 +25,28 @@
         </tr>
       </table>
 
+      <hr>
+
+      <div class="key">
+        <div class="cross">
+          <button class="cross_top cross_btn">&#x25B2;</button>
+          <button class="cross_bottom cross_btn">&#x25BC;</button>
+          <button class="cross_left cross_btn">&#x25C0;</button>
+          <button class="cross_right cross_btn">&#x25B6;</button>
+        </div>
+        <button class="key_btn">&#9632;</button>
+      </div>
+
+      <hr>
+
       <form action="/create/save" method="post">
         <input type="hidden" id="size" name="size" v-model="selected"></input>
         <input type="hidden" id="savedata" name="savedata">
         <input type="submit" value="保存" class="btn">
       </form>
+
+
+      <hr>
 
       <p><a href="/">HOME</a></p>
 
