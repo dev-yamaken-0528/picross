@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset='UTF-8'>
-    <meta name='viewport' content='width=device-width,initial-scale=1'>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
     <title>ピクロス</title>
     <link rel='stylesheet' href='/stylesheets/normalize.css'>
     <link rel='stylesheet' href='/stylesheets/style.css'>
@@ -29,12 +29,12 @@
 
       <div class="key">
         <div class="cross">
-          <button class="cross_top cross_btn">&#x25B2;</button>
-          <button class="cross_bottom cross_btn">&#x25BC;</button>
-          <button class="cross_left cross_btn">&#x25C0;</button>
-          <button class="cross_right cross_btn">&#x25B6;</button>
+          <button @click="keyTop" class="cross_top cross_btn">&#x25B2;</button>
+          <button @click="keyBottom" class="cross_bottom cross_btn">&#x25BC;</button>
+          <button @click="keyLeft" class="cross_left cross_btn">&#x25C0;</button>
+          <button @click="keyRight" class="cross_right cross_btn">&#x25B6;</button>
         </div>
-        <button class="key_btn">&#9632;</button>
+        <button @click="keyBtn" class="key_btn">&#9632;</button>
       </div>
 
       <hr>
