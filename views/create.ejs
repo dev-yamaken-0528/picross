@@ -29,10 +29,10 @@
 
       <div class="key">
         <div class="cross">
-          <button @click="keyTop" class="cross_top cross_btn">&#x25B2;</button>
-          <button @click="keyBottom" class="cross_bottom cross_btn">&#x25BC;</button>
-          <button @click="keyLeft" class="cross_left cross_btn">&#x25C0;</button>
-          <button @click="keyRight" class="cross_right cross_btn">&#x25B6;</button>
+          <button @click="keyClick('top')" class="cross_top cross_btn">&#x25B2;</button>
+          <button @click="keyClick('bottom')" class="cross_bottom cross_btn">&#x25BC;</button>
+          <button @click="keyClick('left')" class="cross_left cross_btn">&#x25C0;</button>
+          <button @click="keyClick('right')" class="cross_right cross_btn">&#x25B6;</button>
         </div>
         <button @click="keyBtn" class="key_btn">&#9632;</button>
       </div>

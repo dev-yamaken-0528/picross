@@ -1,8 +1,17 @@
+let lastTouch = 0
+document.addEventListener('touchend', event => {
+  const now = window.performance.now()
+  if(now - lastTouch <= 500){
+    event.preventDefault()
+  }
+}, true)
+
 var app = new Vue({
   el: '#app',
   data: {
     savedata: [],
-    selectedCell: [0,0],
+    selectedRowIndex: 0,
+    selectedColIndex: 0,
     selected: '',
     options: [
       { text: '5x5', value: 5 },
@@ -14,39 +23,16 @@ var app = new Vue({
     ]
   },
   methods: {
-    keyTop: function(){
+    keyClick: function(key){
       this.setColorClear()
-      this.selectedCell[1] -= 1
-      if(this.selectedCell[1] <= -1){
-        this.selectedCell[1] = this.savedata.length
-      }
-      this.setColorCross()
-      this.setColorSelectedCell()
-    },
-    keyBottom: function(){
-      this.setColorClear()
-      this.selectedCell[1] += 1
-      if(this.selectedCell[1] >= this.savedata.length){
-        this.selectedCell[1] = 0
-      }
-      this.setColorCross()
-      this.setColorSelectedCell()
-    },
-    keyLeft: function(){
-      this.setColorClear()
-      this.selectedCell[0] -= 1
-      if(this.selectedCell[0] <= -1){
-        this.selectedCell[0] = this.savedata.length
-      }
-      this.setColorCross()
-      this.setColorSelectedCell()
-    },
-    keyRight: function(){
-      this.setColorClear()
-      this.selectedCell[0] += 1
-      if(this.selectedCell[0] >= this.savedata.length){
-        this.selectedCell[0] = 0
-      }
+      if(key=='top'){ this.selectedRowIndex -= 1 }
+      if(key=='bottom'){ this.selectedRowIndex += 1 }
+      if(key=='left'){ this.selectedColIndex -= 1 }
+      if(key=='right'){ this.selectedColIndex += 1 }
+      if(this.selectedRowIndex <= -1){ this.selectedRowIndex = this.savedata.length -1 }
+      if(this.selectedRowIndex >= this.savedata.length){ this.selectedRowIndex = 0 }
+      if(this.selectedColIndex <= -1){ this.selectedColIndex = this.savedata.length -1 }
+      if(this.selectedColIndex >= this.savedata.length){ this.selectedColIndex = 0 }
       this.setColorCross()
       this.setColorSelectedCell()
     },
@@ -59,8 +45,8 @@ var app = new Vue({
     },
     setColorCross: function(){
       for(var i=0; i<this.savedata.length; i++){
-        document.getElementById(i+'_'+this.selectedCell[0]).style.backgroundColor = 'rgba(0,0,0,0.25)'
-        document.getElementById(this.selectedCell[1]+'_'+i).style.backgroundColor = 'rgba(0,0,0,0.25)'
+        document.getElementById(this.selectedRowIndex+'_'+i).style.backgroundColor = 'rgba(0,0,0,0.25)'
+        document.getElementById(i+'_'+this.selectedColIndex).style.backgroundColor = 'rgba(0,0,0,0.25)'
       }
     },
     setColorSelectedCell: function(){
@@ -73,7 +59,7 @@ var app = new Vue({
       }
     },
     keyBtn: function(){
-      this.clickCell(this.selectedCell[1], this.selectedCell[0])
+      this.clickCell(this.selectedRowIndex, this.selectedColIndex)
     },
     changeSize: function(size){
       this.savedata = []
@@ -89,12 +75,15 @@ var app = new Vue({
     clickCell: function(rowIndex, colIndex){
       if(this.savedata[rowIndex][colIndex] == 0){
         this.savedata[rowIndex][colIndex] = 1
-        document.getElementById(rowIndex+'_'+colIndex).style.backgroundColor = 'black'
       }else{
         this.savedata[rowIndex][colIndex] = 0
-        document.getElementById(rowIndex+'_'+colIndex).style.backgroundColor = 'white'
       }
       document.getElementById('savedata').value = this.savedata
+      this.selectedRowIndex = rowIndex
+      this.selectedColIndex = colIndex
+      this.setColorClear()
+      this.setColorCross()
+      this.setColorSelectedCell()
     }
   },
   computed: {
