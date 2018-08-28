@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset='UTF-8'>
-    <meta name='viewport' content='width=device-width,initial-scale=1'>
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
     <title>ピクロス</title>
     <link rel='stylesheet' href='/stylesheets/normalize.css'>
     <link rel='stylesheet' href='/stylesheets/style.css'>
@@ -18,12 +18,12 @@
         <tr>
           <td class="square_td"></td>
           <td v-for="n in loaddata.length" class="square_td">
-            <p v-for="num in headNum(n-1)">{{ num }}</p>
+            <p v-for="num in headNum(n-1)">({{ num }})</p>
           </td>
         </tr>
         <tr v-for="(row, rowindex) in loaddata">
           <td class="square_td">
-            <span v-for="num in sideNum(rowindex)">{{ num }}</span>
+            <span v-for="num in sideNum(rowindex)">({{ num }})</span>
           </td>
           <td v-for="(cell, colindex) in row" :id="rowindex+'_'+colindex" @click="clickCell(rowindex,colindex)" class="square_td"></td>
         </tr>

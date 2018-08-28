@@ -21,7 +21,7 @@ var app = new Vue({
       if(now - lastTouch <= 500){
         event.preventDefault()
       }
-    }, true)
+    }, {passive: false})
   },
   methods: {
     refreshColor: function(){
