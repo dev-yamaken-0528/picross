@@ -91,12 +91,38 @@ a {
 }
 
 .cross_btn {
+  display: inline-block;
+  border: 1px solid #9ec34b;
+  font-size: 24px;
+  color: #9ec34b;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 5px;
+  border-radius: 4px;
+  transition: .4s;
 }
+.cross_btn:hover {
+  background-color: #9ec34b;
+  border-color: #cbe585;
+  color: #FFF;
+}
+
 .key_btn {
-  width: 100px;
-  height: 100px;
-  margin-top: auto;
-  margin-bottom: auto;
-  margin-left: 25px;
-  margin-right: 25px;
+  width: 50px;
+  height: 50px;
+  margin: auto 25px auto 25px;
+  display: inline-block;
+  border: 1px solid #9ec34b;
+  font-size: 24px;
+  color: #9ec34b;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 5px;
+  border-radius: 4px;
+  transition: .4s;
+}
+.key_btn:hover {
+  background-color: #9ec34b;
+  border-color: #cbe585;
+  color: #FFF;
 }

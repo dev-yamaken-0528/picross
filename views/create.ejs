@@ -21,7 +21,7 @@
 
       <table class="square_table">
         <tr v-for="(row,rowindex) in savedata">
-          <td v-for="(cell,colindex) in row" :id="(rowindex+'_'+colindex)" @click="clickCell(rowindex,colindex)" class="square_td"></td>
+          <td v-for="(cell,colindex) in row" :id="(rowindex+'_'+colindex)" @click="selectedCell(rowindex,colindex)" class="square_td"></td>
         </tr>
       </table>
 
@@ -29,12 +29,12 @@
 
       <div class="key">
         <div class="cross">
-          <button @click="keyClick('top')" class="cross_top cross_btn">&#x25B2;</button>
-          <button @click="keyClick('bottom')" class="cross_bottom cross_btn">&#x25BC;</button>
-          <button @click="keyClick('left')" class="cross_left cross_btn">&#x25C0;</button>
-          <button @click="keyClick('right')" class="cross_right cross_btn">&#x25B6;</button>
+          <button @click="keyCross('top')" class="cross_top cross_btn">&#x25B2;</button>
+          <button @click="keyCross('bottom')" class="cross_bottom cross_btn">&#x25BC;</button>
+          <button @click="keyCross('left')" class="cross_left cross_btn">&#x25C0;</button>
+          <button @click="keyCross('right')" class="cross_right cross_btn">&#x25B6;</button>
         </div>
-        <button @click="keyBtn" class="key_btn">&#9632;</button>
+        <button @click="keySelect" class="key_btn">&#9632;</button>
       </div>
 
       <hr>
@@ -44,7 +44,6 @@
         <input type="hidden" id="savedata" name="savedata">
         <input type="submit" value="保存" class="btn">
       </form>
-
 
       <hr>
 

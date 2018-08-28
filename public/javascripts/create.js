@@ -1,11 +1,3 @@
-let lastTouch = 0
-document.addEventListener('touchend', event => {
-  const now = window.performance.now()
-  if(now - lastTouch <= 500){
-    event.preventDefault()
-  }
-}, true)
-
 var app = new Vue({
   el: '#app',
   data: {
@@ -22,34 +14,26 @@ var app = new Vue({
       { text: '30x30', value: 30 }
     ]
   },
+  created: function(){
+    let lastTouch = 0
+    document.addEventListener('touchend', event => {
+      const now = window.performance.now()
+      if(now - lastTouch <= 500){
+        event.preventDefault()
+      }
+    }, true)
+  },
   methods: {
-    keyClick: function(key){
-      this.setColorClear()
-      if(key=='top'){ this.selectedRowIndex -= 1 }
-      if(key=='bottom'){ this.selectedRowIndex += 1 }
-      if(key=='left'){ this.selectedColIndex -= 1 }
-      if(key=='right'){ this.selectedColIndex += 1 }
-      if(this.selectedRowIndex <= -1){ this.selectedRowIndex = this.savedata.length -1 }
-      if(this.selectedRowIndex >= this.savedata.length){ this.selectedRowIndex = 0 }
-      if(this.selectedColIndex <= -1){ this.selectedColIndex = this.savedata.length -1 }
-      if(this.selectedColIndex >= this.savedata.length){ this.selectedColIndex = 0 }
-      this.setColorCross()
-      this.setColorSelectedCell()
-    },
-    setColorClear: function(){
+    refreshColor: function(){
       for(var i=0; i<this.savedata.length; i++){
         for(var j=0; j<this.savedata.length; j++){
           document.getElementById(i+'_'+j).style.backgroundColor = 'white'
         }
       }
-    },
-    setColorCross: function(){
       for(var i=0; i<this.savedata.length; i++){
         document.getElementById(this.selectedRowIndex+'_'+i).style.backgroundColor = 'rgba(0,0,0,0.25)'
         document.getElementById(i+'_'+this.selectedColIndex).style.backgroundColor = 'rgba(0,0,0,0.25)'
       }
-    },
-    setColorSelectedCell: function(){
       for(var i=0; i<this.savedata.length; i++){
         for(var j=0; j<this.savedata.length; j++){
           if(this.savedata[i][j] == 1){
@@ -58,21 +42,21 @@ var app = new Vue({
         }
       }
     },
-    keyBtn: function(){
-      this.clickCell(this.selectedRowIndex, this.selectedColIndex)
+    keyCross: function(key){
+      if(key=='top'){ this.selectedRowIndex -= 1 }
+      if(key=='bottom'){ this.selectedRowIndex += 1 }
+      if(key=='left'){ this.selectedColIndex -= 1 }
+      if(key=='right'){ this.selectedColIndex += 1 }
+      if(this.selectedRowIndex <= -1){ this.selectedRowIndex = this.savedata.length -1 }
+      if(this.selectedRowIndex >= this.savedata.length){ this.selectedRowIndex = 0 }
+      if(this.selectedColIndex <= -1){ this.selectedColIndex = this.savedata.length -1 }
+      if(this.selectedColIndex >= this.savedata.length){ this.selectedColIndex = 0 }
+      this.refreshColor()
     },
-    changeSize: function(size){
-      this.savedata = []
-      for(var i=0; i<size; i++){
-        var row = []
-        for(var j=0; j<size; j++){
-          row.push(0)
-        }
-        this.savedata.push(row)
-      }
-      document.getElementById('savedata').value = this.savedata
+    keySelect: function(){
+      this.selectedCell(this.selectedRowIndex, this.selectedColIndex)
     },
-    clickCell: function(rowIndex, colIndex){
+    selectedCell: function(rowIndex, colIndex){
       if(this.savedata[rowIndex][colIndex] == 0){
         this.savedata[rowIndex][colIndex] = 1
       }else{
@@ -81,12 +65,17 @@ var app = new Vue({
       document.getElementById('savedata').value = this.savedata
       this.selectedRowIndex = rowIndex
       this.selectedColIndex = colIndex
-      this.setColorClear()
-      this.setColorCross()
-      this.setColorSelectedCell()
-    }
-  },
-  computed: {
+      this.refreshColor()
+    },
+    changeSize: function(size){
+      this.savedata = []
+      for(var i=0; i<size; i++){
+        this.savedata[i] = Array(size)
+        this.savedata[i].fill(0)
+      }
+      document.getElementById('savedata').value = this.savedata
+      this.selectedRowIndex = 0
+      this.selectedColIndex = 0
+    },
   }
 })
-
