@@ -42,7 +42,7 @@ var app = new Vue({
         }
       }
     },
-    keyCross: function(key){
+    keyCross: function(key, event){
       if(key=='top'){ this.selectedRowIndex -= 1 }
       if(key=='bottom'){ this.selectedRowIndex += 1 }
       if(key=='left'){ this.selectedColIndex -= 1 }
@@ -52,6 +52,7 @@ var app = new Vue({
       if(this.selectedColIndex <= -1){ this.selectedColIndex = this.savedata.length -1 }
       if(this.selectedColIndex >= this.savedata.length){ this.selectedColIndex = 0 }
       this.refreshColor()
+      event.preventDefault()
     },
     keySelect: function(){
       this.selectedCell(this.selectedRowIndex, this.selectedColIndex)
@@ -77,8 +78,5 @@ var app = new Vue({
       this.selectedRowIndex = 0
       this.selectedColIndex = 0
     },
-    keytouchend: function(event){
-      event.preventDefault()
-    }
   }
 })
