@@ -56,7 +56,8 @@ var app = new Vue({
           document.getElementById(rowindex+'_'+colindex).innerHTML = ''
           if(this.playdata.toString() == this.loaddata.toString()){
             var elapsed_ms = new Date().getTime() - this.start_ms;
-            alert('clear! time['+elapsed_ms/1000+']秒')
+            var title = document.getElementById("loadtitle").value
+            alert('clear! title['+title+'] time['+elapsed_ms/1000+']秒')
           }
         }
       }

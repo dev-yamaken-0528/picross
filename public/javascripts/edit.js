@@ -7,14 +7,6 @@ var app = new Vue({
     selectedColIndex: 0
   },
   created: function(){
-    let lastTouch = 0
-    document.addEventListener('touchend', event => {
-      const now = window.performance.now()
-      if(now - lastTouch <= 500){
-        event.preventDefault()
-      }
-    }, {passive: false})
-
     var size = document.getElementById('loadsize').value
     var data = document.getElementById('loaddata').value.split(',')
     var index = 0
@@ -83,6 +75,8 @@ var app = new Vue({
       this.selectedColIndex = colIndex
       this.refreshColor()
     },
+    keytouchend: function(event){
+      event.preventDefault()
+    },
   },
 })
-

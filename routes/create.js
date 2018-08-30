@@ -21,8 +21,9 @@ router.post('/save', function(req, res, next) {
   }
   var filename = Number(max)+1
 
+  var stagetitle = req.body.stagetitle
   var tmpdata = req.body.savedata.split(',')
-  var savedata = []
+  var data = []
   var index = 0
   for(var i=0; i<req.body.size; i++){
     var row = []
@@ -30,7 +31,11 @@ router.post('/save', function(req, res, next) {
       row.push(tmpdata[index])
       index += 1
     }
-    savedata.push(row)
+    data.push(row)
+  }
+  var savedata = {
+    "title" : stagetitle,
+    "data" : data
   }
   fs.writeFile('./data/'+filename+'.json', JSON.stringify(savedata))
   res.redirect(302, '../')

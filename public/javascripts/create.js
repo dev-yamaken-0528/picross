@@ -77,5 +77,8 @@ var app = new Vue({
       this.selectedRowIndex = 0
       this.selectedColIndex = 0
     },
+    keytouchend: function(event){
+      event.preventDefault()
+    }
   }
 })
