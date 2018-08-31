@@ -15,6 +15,8 @@
 
       <h1>ステージ[<%= id %>]</h1>
 
+      <hr>
+
       <table class="square_table">
         <tr>
           <td class="square_td"></td>
@@ -30,10 +32,25 @@
         </tr>
       </table>
 
-      <button @click="modeChange(0)" class="btn" :class="{ btn_active: isShaveMode }">&#9632;</button>
-      <button @click="modeChange(1)" class="btn" :class="{ btn_active: isCheckMode }">&#x2613;</button>
+      <hr>
+        <p>mode</p>
+        <button @click="modeChange(0)" class="btn" :class="{ btn_active: isShaveMode }">&#9632;</button>
+        <button @click="modeChange(1)" class="btn" :class="{ btn_active: isCheckMode }">&#x2613;</button>
+      <hr>
 
-      <p><a href="/" class="btn">HOME</a></p>
+      <div class="key">
+        <div class="cross">
+          <button @click="keyCross('top', arguments[0])"    class="cross_top cross_btn">&#x25B2;</button>
+          <button @click="keyCross('bottom', arguments[0])" class="cross_bottom cross_btn">&#x25BC;</button>
+          <button @click="keyCross('left', arguments[0])"   class="cross_left cross_btn">&#x25C0;</button>
+          <button @click="keyCross('right', arguments[0])"  class="cross_right cross_btn">&#x25B6;</button>
+        </div>
+        <button @click="keySelect" class="key_btn"></button>
+      </div>
+
+      <hr>
+
+      <p><a href="/">HOME</a></p>
 
     </div>
   </body>

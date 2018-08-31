@@ -6,7 +6,9 @@ var app = new Vue({
     mode: 0,
     isShaveMode: true,
     isCheckMode: false,
-    start_ms: new Date().getTime()
+    start_ms: new Date().getTime(),
+    selectedRowIndex: 0,
+    selectedColIndex: 0,
   },
   created: function(){
     var size = document.getElementById('size').value
@@ -93,9 +95,40 @@ var app = new Vue({
         list.push(0)
       }
       return list
-    }
+    },
+    keySelect: function(){
+      this.clickCell(this.selectedRowIndex, this.selectedColIndex)
+    },
+    keyCross: function(key, event){
+      if(key=='top'){ this.selectedRowIndex -= 1 }
+      if(key=='bottom'){ this.selectedRowIndex += 1 }
+      if(key=='left'){ this.selectedColIndex -= 1 }
+      if(key=='right'){ this.selectedColIndex += 1 }
+      if(this.selectedRowIndex <= -1){ this.selectedRowIndex = this.playdata.length -1 }
+      if(this.selectedRowIndex >= this.playdata.length){ this.selectedRowIndex = 0 }
+      if(this.selectedColIndex <= -1){ this.selectedColIndex = this.playdata.length -1 }
+      if(this.selectedColIndex >= this.playdata.length){ this.selectedColIndex = 0 }
+      this.refreshColor()
+      event.preventDefault()
+    },
+    refreshColor: function(){
+      for(var i=0; i<this.playdata.length; i++){
+        for(var j=0; j<this.playdata.length; j++){
+          document.getElementById(i+'_'+j).style.backgroundColor = 'white'
+        }
+      }
+      for(var i=0; i<this.playdata.length; i++){
+        document.getElementById(this.selectedRowIndex+'_'+i).style.backgroundColor = 'rgba(0,0,0,0.25)'
+        document.getElementById(i+'_'+this.selectedColIndex).style.backgroundColor = 'rgba(0,0,0,0.25)'
+      }
+      for(var i=0; i<this.playdata.length; i++){
+        for(var j=0; j<this.playdata.length; j++){
+          if(this.playdata[i][j] == 1){
+            document.getElementById(i+'_'+j).style.backgroundColor = 'black'
+          }
+        }
+      }
+    },
   },
-  computed: {
-  }
 })
 
