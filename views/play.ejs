@@ -20,12 +20,12 @@
       <table class="square_table">
         <tr>
           <td class="square_td"></td>
-          <td v-for="n in loaddata.length" class="square_td">
-            <p v-for="num in headNum(n-1)">({{ num }})</p>
+          <td v-for="n in loaddata.length" class="square_td square_head_col" :id="'col_'+(n-1)">
+            <p v-for="num in headNum(n-1)">{{ num }}</p>
           </td>
         </tr>
         <tr v-for="(row, rowindex) in loaddata">
-          <td class="square_td">
+          <td class="square_td" :id="'row_'+rowindex">
             <span v-for="num in sideNum(rowindex)">({{ num }})</span>
           </td>
           <td v-for="(cell, colindex) in row" :id="rowindex+'_'+colindex" @click="clickCell(rowindex,colindex)" class="square_td"></td>

@@ -32,6 +32,10 @@ body {
   font-size: 10px;
 }
 
+.square_head_col {
+  vertical-align: bottom;
+}
+
 a {
   text-decoration: none;
 }

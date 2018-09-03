@@ -113,10 +113,15 @@ var app = new Vue({
     },
     refreshColor: function(){
       for(var i=0; i<this.playdata.length; i++){
+        document.getElementById('row_'+i).style.backgroundColor = 'white'
+        document.getElementById('col_'+i).style.backgroundColor = 'white'
         for(var j=0; j<this.playdata.length; j++){
           document.getElementById(i+'_'+j).style.backgroundColor = 'white'
         }
       }
+
+      document.getElementById('row_'+this.selectedRowIndex).style.backgroundColor = 'rgba(0,0,0,0.25)'
+      document.getElementById('col_'+this.selectedColIndex).style.backgroundColor = 'rgba(0,0,0,0.25)'
       for(var i=0; i<this.playdata.length; i++){
         document.getElementById(this.selectedRowIndex+'_'+i).style.backgroundColor = 'rgba(0,0,0,0.25)'
         document.getElementById(i+'_'+this.selectedColIndex).style.backgroundColor = 'rgba(0,0,0,0.25)'
