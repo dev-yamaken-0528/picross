@@ -8,6 +8,8 @@ var app = new Vue({
     isCheckMode: false,
     selectedRowIndex: 0,
     selectedColIndex: 0,
+    msg: '',
+    stagetitle: '',
   },
   created: function(){
     var size = document.getElementById('size').value
@@ -56,6 +58,8 @@ var app = new Vue({
       }
     },
     clickCell: function(rowindex, colindex) {
+      this.msg = ""
+
       if(this.isCheckMode){
         this.playdata[rowindex][colindex] = 0
         document.getElementById(rowindex+'_'+colindex).style.backgroundColor = 'white'
@@ -73,7 +77,7 @@ var app = new Vue({
 
           if(this.loaddata[rowindex][colindex] == 0){
             document.getElementById(rowindex+'_'+colindex).innerHTML = '&#x2613;'
-            alert('miss!')
+            this.msg = "MISS!"
             return false
           }
 
@@ -82,7 +86,24 @@ var app = new Vue({
           document.getElementById(rowindex+'_'+colindex).innerHTML = ''
           if(this.playdata.toString() == this.loaddata.toString()){
             clearInterval(this.timer)
-            document.getElementById("stagetitle").innerHTML = document.getElementById("loadtitle").value
+
+            for(var i=0; i<this.playdata.length; i++){
+              document.getElementById('row_'+i).style.backgroundColor = 'white'
+              document.getElementById('col_'+i).style.backgroundColor = 'white'
+              for(var j=0; j<this.playdata.length; j++){
+                document.getElementById(i+'_'+j).style.backgroundColor = 'white'
+              }
+            }
+
+            for(var i=0; i<this.playdata.length; i++){
+              for(var j=0; j<this.playdata.length; j++){
+                if(this.playdata[i][j]==1){
+                  document.getElementById(i+'_'+j).style.backgroundColor = 'black'
+                }
+              }
+            }
+
+            this.stagetitle = document.getElementById("loadtitle").value
           }
         }
       }
