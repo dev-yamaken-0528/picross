@@ -6,7 +6,6 @@ var app = new Vue({
     mode: 0,
     isShaveMode: true,
     isCheckMode: false,
-    start_ms: new Date().getTime(),
     selectedRowIndex: 0,
     selectedColIndex: 0,
   },
@@ -25,6 +24,24 @@ var app = new Vue({
       this.loaddata.push(loaddatarow)
       this.playdata.push(playdatarow)
     }
+  },
+  mounted: function(){
+    var h = 0
+    var m = 0
+    var s = 0
+	  document.getElementById('time').innerHTML = "["+h+"]h ["+m+"]m ["+s+"]s"
+    this.timer = setInterval(function(){
+      s++
+      if(s == 60){
+        s = 0
+        m++
+      }
+      if(m == 60){
+        m = 0
+        h++
+      }
+	    document.getElementById('time').innerHTML = "["+h+"]h ["+m+"]m ["+s+"]s"
+    },1000)
   },
   methods: {
     modeChange: function(selectedMode) {
@@ -53,13 +70,19 @@ var app = new Vue({
           this.playdata[rowindex][colindex] = 0
           document.getElementById(rowindex+'_'+colindex).style.backgroundColor = 'white'
         }else{
+
+          if(this.loaddata[rowindex][colindex] == 0){
+            document.getElementById(rowindex+'_'+colindex).innerHTML = '&#x2613;'
+            alert('miss!')
+            return false
+          }
+
           this.playdata[rowindex][colindex] = 1
-          document.getElementById(rowindex+'_'+colindex).style.backgroundColor = 'black'
+          document.getElementById(rowindex+'_'+colindex).style.backgroundColor = 'rgba(0,0,0,0.6)'
           document.getElementById(rowindex+'_'+colindex).innerHTML = ''
           if(this.playdata.toString() == this.loaddata.toString()){
-            var elapsed_ms = new Date().getTime() - this.start_ms;
-            var title = document.getElementById("loadtitle").value
-            alert('clear! title['+title+'] time['+elapsed_ms/1000+']秒')
+            clearInterval(this.timer)
+            document.getElementById("stagetitle").innerHTML = document.getElementById("loadtitle").value
           }
         }
       }
@@ -120,16 +143,16 @@ var app = new Vue({
         }
       }
 
-      document.getElementById('row_'+this.selectedRowIndex).style.backgroundColor = 'rgba(0,0,0,0.25)'
-      document.getElementById('col_'+this.selectedColIndex).style.backgroundColor = 'rgba(0,0,0,0.25)'
+      document.getElementById('row_'+this.selectedRowIndex).style.backgroundColor = 'rgba(0,0,0,0.2)'
+      document.getElementById('col_'+this.selectedColIndex).style.backgroundColor = 'rgba(0,0,0,0.2)'
       for(var i=0; i<this.playdata.length; i++){
-        document.getElementById(this.selectedRowIndex+'_'+i).style.backgroundColor = 'rgba(0,0,0,0.25)'
-        document.getElementById(i+'_'+this.selectedColIndex).style.backgroundColor = 'rgba(0,0,0,0.25)'
+        document.getElementById(this.selectedRowIndex+'_'+i).style.backgroundColor = 'rgba(0,0,0,0.2)'
+        document.getElementById(i+'_'+this.selectedColIndex).style.backgroundColor = 'rgba(0,0,0,0.2)'
       }
       for(var i=0; i<this.playdata.length; i++){
         for(var j=0; j<this.playdata.length; j++){
           if(this.playdata[i][j] == 1){
-            document.getElementById(i+'_'+j).style.backgroundColor = 'black'
+            document.getElementById(i+'_'+j).style.backgroundColor = 'rgba(0,0,0,0.6)'
           }
         }
       }

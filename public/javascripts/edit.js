@@ -26,7 +26,7 @@ var app = new Vue({
     for(var i=0; i<size; i++){
       for(var j=0; j<size; j++){
         if(this.savedata[i][j]==1){
-          document.getElementById(i+'_'+j).style.backgroundColor = 'black'
+          document.getElementById(i+'_'+j).style.backgroundColor = 'rgba(0,0,0,0.6)'
         }
       }
     }
@@ -39,13 +39,13 @@ var app = new Vue({
         }
       }
       for(var i=0; i<this.savedata.length; i++){
-        document.getElementById(this.selectedRowIndex+'_'+i).style.backgroundColor = 'rgba(0,0,0,0.25)'
-        document.getElementById(i+'_'+this.selectedColIndex).style.backgroundColor = 'rgba(0,0,0,0.25)'
+        document.getElementById(this.selectedRowIndex+'_'+i).style.backgroundColor = 'rgba(0,0,0,0.2)'
+        document.getElementById(i+'_'+this.selectedColIndex).style.backgroundColor = 'rgba(0,0,0,0.2)'
       }
       for(var i=0; i<this.savedata.length; i++){
         for(var j=0; j<this.savedata.length; j++){
           if(this.savedata[i][j] == 1){
-            document.getElementById(i+'_'+j).style.backgroundColor = 'black'
+            document.getElementById(i+'_'+j).style.backgroundColor = 'rgba(0,0,0,0.6)'
           }
         }
       }

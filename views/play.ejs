@@ -33,9 +33,16 @@
       </table>
 
       <hr>
-        <p>mode</p>
-        <button @click="modeChange(0)" class="btn" :class="{ btn_active: isShaveMode }">&#9632;</button>
-        <button @click="modeChange(1)" class="btn" :class="{ btn_active: isCheckMode }">&#x2613;</button>
+      
+      <p id="time"></p>
+      <p id="stagetitle"></p>
+
+      <hr>
+
+      <p>mode</p>
+      <button @click="modeChange(0)" class="btn" :class="{ btn_active: isShaveMode }">&#9632;</button>
+      <button @click="modeChange(1)" class="btn" :class="{ btn_active: isCheckMode }">&#x2613;</button>
+
       <hr>
 
       <div class="key">
